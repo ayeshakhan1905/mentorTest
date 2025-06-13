@@ -1,20 +1,11 @@
-// src/utils/axios.jsx
-import axios from 'axios';
+import axios from "axios";
+const isDev = import.meta.env.MODE === "development";
 
 const axiosInstance = axios.create({
-  baseURL: 'https://mentortest-3af8.onrender.com/api', 
-  withCredentials: true,             
+  baseURL: isDev
+    ? "http://localhost:3000/api"
+    : "https://mentortest-3af8.onrender.com/api",
+  withCredentials: true,
 });
 
-axiosInstance.interceptors.response.use(
-  (response) => response,
-  async (error) => {
-    if (error.response?.status === 401) {
-      // clear user from context if unauthorized
-      localStorage.removeItem("user"); // optional
-      window.location.href = "/login"; // or show a logout message
-    }
-    return Promise.reject(error);
-  }
-);
 export default axiosInstance;
