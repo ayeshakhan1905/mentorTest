@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/auth';
-import axios from '../utils/Axios';
+import axiosInstance from '../utils/Axios';
 
 const Login = () => {
   const { setUser } = useAuth();
@@ -13,7 +13,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:3000/api/users/login', { email, password }, { withCredentials: true });
+      const res = await axiosInstance.post('/users/login', { email, password }, { withCredentials: true });
       setUser(res.data.user);
       console.log('Login successful:', res.data.user);
       navigate('/dashboard');

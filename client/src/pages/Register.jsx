@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/auth';
-import axios from '../utils/Axios';
+import axiosInstance from '../utils/Axios';
 
 const Register = () => {
   const { setUser } = useAuth();
@@ -20,7 +20,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('/users/register', form, { withCredentials: true });
+      const res = await axiosInstance.post('/users/register', form, { withCredentials: true });
       setUser(res.data.user);
       navigate('/dashboard');
     } catch (err) {
