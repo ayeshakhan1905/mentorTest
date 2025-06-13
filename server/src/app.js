@@ -6,7 +6,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://mentor-test-tm3h.vercel.app/'],
+  origin: ['http://localhost:5173', 'https://mentor-test-tm3h.vercel.app'],
   credentials: true,
 }));
 app.use(cookieParser())
