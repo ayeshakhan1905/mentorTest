@@ -31,6 +31,14 @@ app.use(cors({
   credentials: true,
 }));
 
+app.use((req, res, next) => {
+  // ... CORS headers
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(200);
+  }
+  next();
+});
+
 app.use(express.json());
 app.use(cookieParser());
 
